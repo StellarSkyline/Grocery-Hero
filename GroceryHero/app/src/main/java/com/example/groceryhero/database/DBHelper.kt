@@ -128,8 +128,7 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
         var totalPrice = 0.0
         var totalMrp = 0.0
         var totalDiscount = 0.0
-        var totalCouponDiscount = 0.0
-        var checkDelivery = false
+        var checkDelivery: Boolean
 
         var totalQuantity = 0
         var list:ArrayList<ProductsDB> = ArrayList()
@@ -138,8 +137,8 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
 
         for(i in 0 until list.size) {
             totalPrice += (list[i].price.toDouble()*list[i].quantity.toDouble())
-            totalMrp += (list[i].mrp.toDouble()*list[i].quantity.toDouble())
-            totalQuantity += list[i].quantity.toInt()
+            totalMrp += (list[i].mrp *list[i].quantity.toDouble())
+            totalQuantity += list[i].quantity
         }
 
         totalDiscount = totalMrp - totalPrice
@@ -149,6 +148,17 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
         } else{ checkDelivery = false}
 
         return OrderSummary(totalPrice, totalMrp, totalDiscount,totalQuantity, checkDelivery)
+    }
+
+    fun getTotalQuantity():Int {
+        var totalQuantity = 0
+        var db = DBHelper()
+        var list = db.readData()
+
+        for(i in 0 until list.size) {
+            totalQuantity += list[i].quantity
+        }
+        return totalQuantity
     }
 
 }

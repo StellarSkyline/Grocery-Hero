@@ -48,14 +48,10 @@ class OrderSummary : AppCompatActivity(), View.OnClickListener {
         recycler_view_order.adapter = adapter
         button_coupon.setOnClickListener(this)
         button_pay_at_delivery.setOnClickListener(this)
+        button_pay_online.setOnClickListener(this)
         updateUI()
 
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -106,6 +102,13 @@ class OrderSummary : AppCompatActivity(), View.OnClickListener {
             }
             R.id.button_pay_at_delivery -> {
                 startActivity(Intent(this, DeliveryActivity::class.java))
+                finish()
+            }
+
+            R.id.button_pay_online -> {
+                var intent = Intent(this, PayOnlineActivity::class.java)
+                intent.putExtra("total", localTotal)
+                startActivity(intent)
             }
         }
     }

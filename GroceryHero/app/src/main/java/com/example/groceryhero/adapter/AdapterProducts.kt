@@ -11,6 +11,7 @@ import com.example.groceryhero.R
 import com.example.groceryhero.activities.ProductDetailActivity
 import com.example.groceryhero.app.Config
 import com.example.groceryhero.database.DBHelper
+import com.example.groceryhero.helper.Linker
 import com.example.groceryhero.helper.hide
 import com.example.groceryhero.helper.show
 import com.example.groceryhero.helper.toast
@@ -23,6 +24,7 @@ class AdapterProducts(var mContext: Context):RecyclerView.Adapter<AdapterProduct
 
     var mList:ArrayList<Products> = ArrayList()
     lateinit var db:DBHelper
+    var link = mContext as Linker
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -87,12 +89,16 @@ class AdapterProducts(var mContext: Context):RecyclerView.Adapter<AdapterProduct
                 itemView.text_view_qty_product.text = db.itemInCartQuantity(item.productName).toString()
                 itemView.layout_add_cart.hide()
                 itemView.layout_plus_minus_button.show()
+                link.updateUI()
+                notifyDataSetChanged()
 
             }
 
             itemView.button_add_quantity.setOnClickListener{
                 db.updateProduct(item.productName, 1 + db.itemInCartQuantity(item.productName))
                 itemView.text_view_qty_product.text = db.itemInCartQuantity(item.productName).toString()
+                link.updateUI()
+                notifyDataSetChanged()
 
             }
 
@@ -100,10 +106,14 @@ class AdapterProducts(var mContext: Context):RecyclerView.Adapter<AdapterProduct
                 if(db.itemInCartQuantity(item.productName) > 1) {
                     db.updateProduct(item.productName,db.itemInCartQuantity(item.productName) - 1)
                     itemView.text_view_qty_product.text = db.itemInCartQuantity(item.productName).toString()
+                    link.updateUI()
+                    notifyDataSetChanged()
                 } else {
                     db.deleteProduct(item.productName)
                     itemView.layout_add_cart.show()
                     itemView.layout_plus_minus_button.hide()
+                    link.updateUI()
+                    notifyDataSetChanged()
                 }
             }
 

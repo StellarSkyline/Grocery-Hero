@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ThanksActivity"></activity>
+        <activity android:name=".activities.PayOnlineActivity"></activity>
+        <activity android:name=".activities.ThanksActivity" />
         <activity android:name=".activities.DeliveryActivity" />
         <activity android:name=".activities.OrderSummary" />
         <activity android:name=".activities.ProfileActivity" />
