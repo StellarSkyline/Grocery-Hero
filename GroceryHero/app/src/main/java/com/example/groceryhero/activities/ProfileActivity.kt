@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.example.groceryhero.R
+import com.example.groceryhero.database.DBHelper
 import com.example.groceryhero.helper.SessionManager
 import com.example.groceryhero.helper.setupToolbar
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -34,6 +35,8 @@ class ProfileActivity : AppCompatActivity() {
 
         button_logout.setOnClickListener{
             session.logout()
+            var db = DBHelper()
+            db.deleteTable()
             startActivity(Intent(this, StartActivity::class.java))
 
         }

@@ -39,6 +39,7 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         val dropTable = "drop table $TABLE_NAME"
         db?.execSQL(dropTable)
+        onCreate(db)
         Log.d("STLog", "onUpgrade")
     }
 
