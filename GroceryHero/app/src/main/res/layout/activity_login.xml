@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2D3641"
+        android:padding="10dp">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/image_view_main"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/icon_logo"/>
+
+        <TextView
+            android:id="@+id/text_view_name"
+            android:layout_toRightOf="@id/image_view_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grocery Hero"
+            android:textSize="30dp"
+            android:layout_marginTop="50dp"
+            android:textColor="#FFF"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_toRightOf="@+id/image_view_main"
+            android:layout_below="@id/text_view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="#FFF"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColorHint="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Email"
+                android:textColorHint="#FFF"
+                android:textColor="#FFF"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_password_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_email"
+            app:hintTextColor="#FFF"
+            android:textColorHint="#FFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Password"
+                android:textColorHint="#FFF"
+                android:textColor="#FFF"
+                android:password="true"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:layout_below="@+id/input_layout_password_login"
+           app:cardBackgroundColor="#38BB9B"
+           app:cardCornerRadius="20dp">
+
+           <Button
+               android:id="@+id/button_login"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Login"
+               android:textSize="30dp"
+               android:background="@android:color/transparent"
+               android:textColor="#FFF"
+               android:padding="10dp"/>
+       </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+</LinearLayout>
+

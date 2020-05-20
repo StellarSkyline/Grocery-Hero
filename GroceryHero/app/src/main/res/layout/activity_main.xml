@@ -1,0 +1,52 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:isScrollContainer="true"
+    android:background="#2E3641">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#2E3641"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager_slider"
+            android:layout_width="410dp"
+            android:layout_height="200dp"/>
+
+        <TextView
+            android:id="@+id/text_view_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/image_view_profile"
+            android:text="Welcome"
+            android:textColor="#FFFF"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
+
+
+
+        <FrameLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#38BB9B"
+            app:menu = "@menu/bottom_navigation"
+            android:layout_gravity="bottom"/>
+
+    </LinearLayout>
+
+</ScrollView>
