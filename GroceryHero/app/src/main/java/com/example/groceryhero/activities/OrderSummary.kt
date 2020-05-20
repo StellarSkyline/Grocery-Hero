@@ -1,6 +1,7 @@
 package com.example.groceryhero.activities
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -93,10 +94,12 @@ class OrderSummary : AppCompatActivity(), View.OnClickListener {
                 if(clickOnce) {
                     enterCoupon = edit_text_coupon.text.toString()
                     if(enterCoupon == couponCode) {
+                        this.toast("Coupon Discount Applied: ₹${localTotal * 0.30}")
                         localTotal -= (localTotal * 0.30)
                         clickOnce = false
                         updateUI()
-                        this.toast("30% Discount Code Applied!")
+                        text_view_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+
                     } else { updateUI()}
                 }
 
