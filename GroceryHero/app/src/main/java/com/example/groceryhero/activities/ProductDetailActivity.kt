@@ -7,6 +7,9 @@ import android.text.method.ScrollingMovementMethod
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.MenuItemCompat
 import com.example.groceryhero.R
 import com.example.groceryhero.app.Config
 import com.example.groceryhero.database.DBHelper
@@ -17,12 +20,15 @@ import com.example.groceryhero.model.ProductsDB
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.activity_product_detail.view.*
+import kotlinx.android.synthetic.main.layout_cart_badge.view.*
 import kotlinx.android.synthetic.main.row_layout_cart.view.*
 
 class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
     var mList:ArrayList<ProductsDB> = ArrayList()
     var quantity:Int = 0
-   lateinit  var db:DBHelper
+    lateinit  var db:DBHelper
+    var textViewCartCount: TextView? = null
+    lateinit var item:Products
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +41,7 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun init() {
         db = DBHelper()
-        var item: Products = intent.getSerializableExtra("data") as Products
+        item = intent.getSerializableExtra("data") as Products
         quantity = db.itemInCartQuantity(item.productName)
         text_view_title.text = item.productName
         text_view_description.text = item.description
@@ -67,8 +73,19 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+
+        var item = menu.findItem(R.id.menu_cart)
+        MenuItemCompat.setActionView(item, R.layout.layout_cart_badge)
+        var view = MenuItemCompat.getActionView(item)
+        textViewCartCount = view.text_view_count_badge
+        updateCartCount()
+
+        view.setOnClickListener{
+            startActivity(Intent(this, CartActivity::class.java))
+        }
+        return super.onCreateOptionsMenu(menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -77,10 +94,17 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
             R.id.button_add_quantity -> {
                 quantity += 1
                 text_view_qty.text = "${quantity.toString()}"
+                updateCartCount()
             }
             R.id.button_minus_quantity -> {
-                quantity -= 1
-                text_view_qty.text = "${quantity.toString()}"
+                if(quantity > 1) {
+                    quantity -= 1
+                    text_view_qty.text = "${quantity.toString()}"
+                    updateCartCount()
+                } else {
+                    db.deleteProduct(item.productName)
+                    updateCartCount()
+                }
             }
             R.id.button_add_cart -> {
                 var item: Products = intent.getSerializableExtra("data") as Products
@@ -99,9 +123,27 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
                } else {
                    this.toast("Item not added to cart, please update quantity")
                }
+                updateCartCount()
 
             }
         }
     }
+
+    fun updateCartCount() {
+        var db = DBHelper()
+        var items = db.getTotalQuantity()
+        if(items == 0) {
+            textViewCartCount?.visibility = View.GONE
+        } else {
+            textViewCartCount?.visibility = View.VISIBLE
+            textViewCartCount?.text = items.toString()
+        }
+    }
+
+    override fun onStart() {
+        updateCartCount()
+        super.onStart()
+    }
+
 
 }

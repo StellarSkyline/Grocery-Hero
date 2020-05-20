@@ -1,6 +1,7 @@
 package com.example.groceryhero.activities
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -44,7 +45,11 @@ class DeliveryActivity : AppCompatActivity() {
             } else if(address.isNotEmpty() && mobile.isNotEmpty()) {
                 var db = DBHelper()
                 db.deleteTable()
-                startActivity(Intent(this, ThanksActivity::class.java))
+                var intent = Intent(this,ThanksActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+
             }
         }
 

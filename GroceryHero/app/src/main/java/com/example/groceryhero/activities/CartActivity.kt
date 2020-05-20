@@ -58,15 +58,12 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, Linker {
             }
             R.id.button_checkout -> {
                 startActivity(Intent(this, OrderSummary::class.java))
+                finish()
             }
 
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
