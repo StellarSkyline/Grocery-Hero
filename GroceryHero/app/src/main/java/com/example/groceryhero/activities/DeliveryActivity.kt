@@ -1,7 +1,7 @@
 package com.example.groceryhero.activities
 
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.Intent.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -56,8 +56,9 @@ class DeliveryActivity : AppCompatActivity() {
             else if(mobile.isEmpty()){input_layout_mobile_delivery.error = "Mobile is Required"}
             else {
                 //Write code here if we want to save the information
-                startActivity(Intent(this, ThanksActivity::class.java))
-                finish()
+                var intent = Intent(this, ThanksActivity::class.java)
+                intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
             }
 
         }

@@ -58,7 +58,6 @@ class CartActivity : AppCompatActivity(), View.OnClickListener, Linker {
             }
             R.id.button_checkout -> {
                 startActivity(Intent(this, OrderSummary::class.java))
-                finish()
             }
 
         }
