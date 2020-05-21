@@ -45,7 +45,7 @@ class PayOnlineActivity : AppCompatActivity() {
             } else if(zip.isEmpty()) {
                 input_layout_zip.error = "ZIP Code Required"
             } else {
-                startActivity(Intent(this, ThanksActivity::class.java))
+                startActivity(Intent(this, DeliveryActivity::class.java))
             }
         }
 

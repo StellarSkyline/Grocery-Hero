@@ -99,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
             Response.ErrorListener { response ->
                 this.log(response.message.toString())
                 this.toast("Register Failed ${response.message}")
+                progress_bar.hide()
             })
         //add request to request queue to execute network call
         requestQueue.add(request)

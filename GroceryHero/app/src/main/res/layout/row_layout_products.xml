@@ -49,7 +49,7 @@
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/image_view_product"
             android:text="Title"
-            android:textColor="#FFF"
+            android:textColor="#2E3641"
             android:textSize="20dp" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/image_view_product"
             android:text="MRP"
-            android:textColor="#FFF"
+            android:textColor="#2E3641"
             android:textSize="15dp" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_below="@id/text_view_title_product"
             android:layout_alignParentRight="true"
             android:text="Price"
-            android:textColor="#FFF"
+            android:textColor="#2E3641"
             android:textSize="15dp" />
 
         <LinearLayout
@@ -99,7 +99,7 @@
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:text="qty"
-                android:textColor="#FFF"
+                android:textColor="#2E3641"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
 

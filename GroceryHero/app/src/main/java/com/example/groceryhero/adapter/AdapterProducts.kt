@@ -85,7 +85,6 @@ class AdapterProducts(var mContext: Context):RecyclerView.Adapter<AdapterProduct
                 var mrp = item.mrp.toString()
                 var productItems = ProductsDB(name, price,image, 1, mrp.toDouble())
                 db.addProduct(productItems,1)
-                mContext.toast("Item added to cart")
                 itemView.text_view_qty_product.text = db.itemInCartQuantity(item.productName).toString()
                 itemView.layout_add_cart.hide()
                 itemView.layout_plus_minus_button.show()
