@@ -116,33 +116,4 @@ class DBAddress(): SQLiteOpenHelper(MyActivity.instance, "AddressDB",null,1) {
         dbWritable.delete(TABLE_NAME, null, null)
     }
 
-    fun returnSingleData():AddData {
-        var item = AddData(0,"","","","","","",0,"","","")
-        var columns = arrayOf(
-            COLUMN_STREET,
-            COLUMN_CITY,
-            COLUMN_HOUSENO,
-            COLUMN_COUNTRY,
-            COLUMN_ZIPCODE,
-            COLUMN_TYPE
-        )
-
-        var cursor = dbWritable.query(TABLE_NAME, columns, null, null, null, null, null)
-
-        if(cursor !=null && cursor.moveToFirst()) {
-            do{
-                var street = cursor.getString(cursor.getColumnIndex(COLUMN_STREET))
-                var city = cursor.getString(cursor.getColumnIndex(COLUMN_CITY))
-                var houseNo = cursor.getString(cursor.getColumnIndex(COLUMN_HOUSENO))
-                var country = cursor.getString(cursor.getColumnIndex(COLUMN_COUNTRY))
-                var zip = cursor.getString(cursor.getColumnIndex(COLUMN_ZIPCODE))
-                var type = cursor.getString(cursor.getColumnIndex(COLUMN_TYPE))
-                item = AddData(city = city, houseNo = houseNo, location = country, pincode = zip.toInt(), type = type, streetName = street)
-                return item
-            }while(cursor.moveToNext())
-        }
-        cursor.close()
-        return item
-    }
-
 }
