@@ -19,9 +19,10 @@ package com.example.groceryhero
 //TODO: [X] - 05/21/2020 - Add Activity to download saved address
 //TODO: [X] - 05/21/2020 - Create a Recycler View to show downloaded address
 //TODO: [X] - 05/21/2020 - Create local DB to store set address
-//TODO: [ ] Use saved address when ordering
-//TODO: [ ] Add input validation to Address Activity
+//TODO: [X] - 05/22/2020 - Use saved address when ordering
+//TODO: [ ] Add input validation to Add Address Activity
 //TODO: [ ] Figure out back button sends you back to main activity from thank you page
+//TODO: [ ] Implement Search activity using api: http://apolis-grocery.herokuapp.com/api/products/search/<Product Name>
 
 
 
