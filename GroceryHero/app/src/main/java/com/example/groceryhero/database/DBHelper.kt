@@ -50,8 +50,7 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
         content.put(PRODUCT_PRICE, item.price)
         content.put(PRODUCT_IMAGE, item.image)
         content.put(PRODUCT_QUANTITY, quantity)
-        content.put(PRODUCT_MRP, item.mrp
-        )
+        content.put(PRODUCT_MRP, item.mrp)
         dbWritable.insert(TABLE_NAME,null,content)
     }
 

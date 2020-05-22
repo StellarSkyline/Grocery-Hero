@@ -9,13 +9,20 @@ package com.example.groceryhero
 //TODO: [X] - 05/20/2020 - Pay Online Activity
 //TODO: [X] - 05/20/2020 - Fix Product Detail Cart Activity
 //TODO: [X] - 05/20/2020 - Update the UI for the profile page
-//TODO: [X] - 05/21/2020 - Change Text color of RV darker
-//TODO: [X] - 05/21/2020 - Display Total Discount
-//TODO: [X] - 05/21/2020 - Update UI for Delivery Detail
-//TODO: [X] - 05/21/2020 - Link Delivery Detail after PayOnline Activity
+//TODO: [X] - 05/20/2020 - Change Text color of RV darker
+//TODO: [X] - 05/20/2020 - Display Total Discount
+//TODO: [X] - 05/20/2020 - Update UI for Delivery Detail
+//TODO: [X] - 05/20/2020 - Link Delivery Detail after PayOnline Activity
+//TODO: [X] - 05/21/2020 - Use the same grocery API for login and Register
+//TODO: [X] - 05/21/2020 - Edit Shared preference to Accept User ID
+//TODO: [X] - 05/21/2020 - Add Activity to register an address and save it in the api
+//TODO: [X] - 05/21/2020 - Add Activity to download saved address
+//TODO: [X] - 05/21/2020 - Create a Recycler View to show downloaded address
+//TODO: [X] - 05/21/2020 - Create local DB to store set address
+//TODO: [ ] Use saved address when ordering
+//TODO: [ ] Add input validation to Address Activity
 //TODO: [ ] Figure out back button sends you back to main activity from thank you page
-//TODO: [ ] Address save API - This is backend
-//TODO: [ ] Save database API - This is backend
+
 
 
 //Optional Tasks

@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
                 input_layout_password_login.error = "Password Required"
             } else if(email.isNotEmpty() && password.isNotEmpty()) {
                 progress_bar.show()
-                var user = Users(" ", email, password, " ")
+                //var user = Users(" ", email, password, " ", " ")
                 loginUser(email, password)
             }
 
@@ -104,12 +104,9 @@ class LoginActivity : AppCompatActivity() {
         //add request to request queue to execute network call
         requestQueue.add(request)
 
-
     }
 
     fun setTextListener() {
-
-
         edit_text_email.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if(s.isNullOrEmpty()) {input_layout_email.error = "Email is Required"}

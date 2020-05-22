@@ -35,13 +35,6 @@ class RegisterActivity : AppCompatActivity() {
         setTextListener()
 
         button_register.setOnClickListener {
-//            if(name.isEmpty() || email.isEmpty() || mobile.isEmpty() || password.isEmpty())
-//            {
-//                this.toast("Register Failed")
-//            } else {
-//                var user = Users(name, email, password, mobile)
-//                registerUser(user)
-//            }
 
             if(name.isEmpty()) {
                 input_layout_name.error = "Name is Required"
@@ -53,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                 input_layout_password.error = "Password is Required"
             } else if(name.isNotEmpty() && email.isNotEmpty() && mobile.isNotEmpty() && password.isNotEmpty()) {
                 progress_bar.show()
-                var user = Users(name, email, password, mobile)
+                var user = Users(name, email, password, mobile, " ")
                 registerUser(user)
             }
         }
