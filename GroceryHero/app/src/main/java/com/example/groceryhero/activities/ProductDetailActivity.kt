@@ -119,7 +119,6 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
 
                } else if(db.isItemInCart(item.productName)) {
                    db.updateProduct(item.productName,quantity + db.itemInCartQuantity(item.productName))
-                   this.toast("Item updated in cart")
                } else {
                    this.toast("Item not added to cart, please update quantity")
                }

@@ -1,6 +1,8 @@
 package com.example.groceryhero.activities
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -45,7 +47,9 @@ class PayOnlineActivity : AppCompatActivity() {
             } else if(zip.isEmpty()) {
                 input_layout_zip.error = "ZIP Code Required"
             } else {
-                startActivity(Intent(this, ThanksActivity::class.java))
+                var intent = Intent(this, DeliveryActivity::class.java)
+                intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
             }
         }
 
@@ -132,7 +136,6 @@ class PayOnlineActivity : AppCompatActivity() {
                 if(s!!.isNotBlank()) {input_layout_zip.isErrorEnabled = false}
             }
         })
-
 
     }
 

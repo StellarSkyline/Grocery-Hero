@@ -19,7 +19,13 @@ class ThanksActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            android.R.id.home -> {finish()}
+            android.R.id.home -> {
+                var db = DBHelper()
+                db.deleteTable()
+                startActivity(Intent(this, MainActivity::class.java))
+
+                finish()
+            }
         }
         return true
     }

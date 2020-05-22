@@ -1,18 +1,31 @@
 package com.example.groceryhero
 
-//TODO: [X] Edit Product Detail to add disappearing + - and add to cart buttons - 05/19/2020
-//TODO: [X] Add Thank you Activity at the end of an order - 05/19/2020
-//TODO: [X] Add to project GIT/GitHub - 05/19/2020
-//TODO: [X] Update the UI for the profile page - 05/20/2020
-//TODO: [X] Strike line on total price and display coupon savings - Strike line completed, showed discount amount as toast - 05/20/2020
-//TODO: [-] Change Back Button - Somewhat works but Don't know how to clear activity stack - 05/20/2020
-//TODO: [X] Display Total Discount - 05/20/2020
-//TODO: [X] Implement Cart Badge - 05/20/2020
-//TODO: [ ] Address save API - This is backend
-//TODO: [ ] Save database API - This is backend
-//TODO: [X] Pay Online Activity - 05/20/2020
-//TODO: [X] Fix Product Detail Cart Activity - 05/20/2020
+//Main Tasks
+//TODO: [X] - 05/19/2020 - Edit Product Detail to add disappearing + - and add to cart buttons
+//TODO: [X] - 05/19/2020 - Add Thank you Activity at the end of an order
+//TODO: [X] - 05/19/2020 - Add to project GIT/GitHub
+//TODO: [X] - 05/19/2020 - Strike line on total price and display coupon savings
+//TODO: [X] - 05/20/2020 - Implement Cart Badge
+//TODO: [X] - 05/20/2020 - Pay Online Activity
+//TODO: [X] - 05/20/2020 - Fix Product Detail Cart Activity
+//TODO: [X] - 05/20/2020 - Update the UI for the profile page
+//TODO: [X] - 05/20/2020 - Change Text color of RV darker
+//TODO: [X] - 05/20/2020 - Display Total Discount
+//TODO: [X] - 05/20/2020 - Update UI for Delivery Detail
+//TODO: [X] - 05/20/2020 - Link Delivery Detail after PayOnline Activity
+//TODO: [X] - 05/21/2020 - Use the same grocery API for login and Register
+//TODO: [X] - 05/21/2020 - Edit Shared preference to Accept User ID
+//TODO: [X] - 05/21/2020 - Add Activity to register an address and save it in the api
+//TODO: [X] - 05/21/2020 - Add Activity to download saved address
+//TODO: [X] - 05/21/2020 - Create a Recycler View to show downloaded address
+//TODO: [X] - 05/21/2020 - Create local DB to store set address
+//TODO: [ ] Use saved address when ordering
+//TODO: [ ] Add input validation to Address Activity
+//TODO: [ ] Figure out back button sends you back to main activity from thank you page
 
-//Optional TO DO's
+
+
+//Optional Tasks
 //TODO: [ ] Create Activity to show case Product Image/ Image slider for different images
 //TODO: [ ] Change toast messages into snack bar
+//TODO: [ ] Figure out how to make auto slider for image view pager

@@ -22,6 +22,7 @@ class SessionManager() {
         editor.putString(Users.KEY_Mobile, user.mobile)
         editor.putString(Users.KEY_EMAIL, user.email)
         editor.putString(Users.KEY_PASSWORD, user.password)
+        editor.putString(Users.KEY_USER_ID, user.id)
         editor.commit()
     }
 
@@ -31,16 +32,15 @@ class SessionManager() {
         editor.commit()
     }
 
-    fun getName():String? {
-        return sharePreference.getString(Users.KEY_NAME, null)
-    }
+
 
     fun getUser(): Users {
         var name = sharePreference.getString(Users.KEY_NAME, null)
         var email = sharePreference.getString(Users.KEY_EMAIL, null)
         var password = sharePreference.getString(Users.KEY_PASSWORD, null)
         var mobile = sharePreference.getString(Users.KEY_Mobile, null)
-        var user = Users(name!!, email!!, password!!, mobile!!)
+        var id = sharePreference.getString(Users.KEY_USER_ID, null)
+        var user = Users(name = name!!, email = email!!, password = password!!, mobile = mobile!!, id = id!!)
 
         return user
     }
@@ -58,4 +58,18 @@ class SessionManager() {
         editor.putString("token", token)
         editor.commit()
     }
+
+    fun getId():String {
+        return sharePreference.getString(Users.KEY_USER_ID, null)!!
+    }
+
+    fun getName():String {
+        return sharePreference.getString(Users.KEY_NAME, null)!!
+    }
+
+    fun getMobile():String {
+        return sharePreference.getString(Users.KEY_Mobile, null)!!
+    }
+
+
 }

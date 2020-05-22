@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.MenuItemCompat
 import com.example.groceryhero.R
+import com.example.groceryhero.database.DBAddress
 import com.example.groceryhero.database.DBHelper
 import com.example.groceryhero.helper.SessionManager
 import com.example.groceryhero.helper.setupToolbar
@@ -19,9 +20,10 @@ import kotlinx.android.synthetic.main.fragment_profile.view.text_view_email
 import kotlinx.android.synthetic.main.fragment_profile.view.text_view_name
 import kotlinx.android.synthetic.main.layout_cart_badge.view.*
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     var textViewCartCount: TextView? = null
+    var session = SessionManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +34,17 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun init() {
         this.setupToolbar("Profile")
-        var session = SessionManager()
+        session = SessionManager()
 
         var user = session.getUser()
 
         text_view_name.text = "Name: ${user.name}"
         text_view_email.text = "Email: ${user.email}"
         text_view_mobile.text = "Mobile: ${user.mobile}"
+        checkAddress()
 
-        button_logout.setOnClickListener{
-            session.logout()
-            var db = DBHelper()
-            db.deleteTable()
-            startActivity(Intent(this, StartActivity::class.java))
-
-        }
+        button_logout.setOnClickListener(this)
+        button_edit_address.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -85,7 +83,38 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onStart() {
         updateCartCount()
+        checkAddress()
         super.onStart()
     }
+
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.button_logout -> {
+                session.logout()
+                var db = DBHelper()
+                db.deleteTable()
+                var dbAddress = DBAddress()
+                dbAddress.deleteTable()
+                startActivity(Intent(this, StartActivity::class.java))
+            }
+            R.id.button_edit_address -> {
+                startActivity(Intent(this, ManageAddress::class.java))
+            }
+
+        }
+    }
+
+    fun checkAddress(){
+        var db = DBAddress()
+        var address = db.readData()
+
+        if(db.isPopulated()) {
+            text_view_address.text = "${address[0].houseNo} ${address[0].streetName} ${address[0].type} "
+        } else {
+            text_view_address.text = "Set primary Address"
+        }
+    }
+
+
 
 }

@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     var mList:Category = Category()
     lateinit var adapter: AdapterCategory
-    var catID:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
