@@ -45,6 +45,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
         button_logout.setOnClickListener(this)
         button_edit_address.setOnClickListener(this)
+        button_order_history.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -92,13 +93,17 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             R.id.button_logout -> {
                 session.logout()
                 var db = DBHelper()
-                db.deleteTable()
                 var dbAddress = DBAddress()
-                dbAddress.deleteTable()
+                dbAddress.deleteData()
+                db.deleteData()
                 startActivity(Intent(this, StartActivity::class.java))
             }
             R.id.button_edit_address -> {
                 startActivity(Intent(this, ManageAddress::class.java))
+            }
+
+            R.id.button_order_history -> {
+                startActivity(Intent(this, MyOrderActivity::class.java))
             }
 
         }

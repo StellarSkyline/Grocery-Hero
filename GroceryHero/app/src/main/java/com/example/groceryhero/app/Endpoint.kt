@@ -44,9 +44,14 @@ class Endpoint {
         }
 
         fun postOrder():String {
-            val URL_GET_ORDER = "orders"
+            val URL_POST_ORDER = "orders"
 
-            return "${Config.BASE_URL + URL_GET_ORDER}"
+            return "${Config.BASE_URL + URL_POST_ORDER}"
+        }
+
+        fun getOrder():String {
+            val URL_GET_ORDER = "orders/"
+            return "${Config.BASE_URL+URL_GET_ORDER}"
         }
     }
 }
