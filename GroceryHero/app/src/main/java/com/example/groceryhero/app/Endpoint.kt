@@ -1,5 +1,7 @@
 package com.example.groceryhero.app
 
+import java.net.URL
+
 class Endpoint {
 
     companion object{
@@ -39,6 +41,22 @@ class Endpoint {
         fun getAddress():String {
             val URL_GET_ADDRESS = "address/"
             return "${Config.BASE_URL + URL_GET_ADDRESS}"
+        }
+
+        fun postOrder():String {
+            val URL_POST_ORDER = "orders"
+
+            return "${Config.BASE_URL + URL_POST_ORDER}"
+        }
+
+        fun getOrder():String {
+            val URL_GET_ORDER = "orders/"
+            return "${Config.BASE_URL+URL_GET_ORDER}"
+        }
+
+        fun getSearch():String {
+            val URL_GET_SEARCH = "products/search/"
+            return "${Config.BASE_URL+URL_GET_SEARCH}"
         }
     }
 }

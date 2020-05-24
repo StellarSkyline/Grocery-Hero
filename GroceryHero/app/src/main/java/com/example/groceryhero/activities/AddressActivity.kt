@@ -52,8 +52,6 @@ class AddressActivity : AppCompatActivity() {
                 zipcode = zipcode, city = city, type = type)
             putAddress(mAddress)
             finish()
-
-
         }
 
     }

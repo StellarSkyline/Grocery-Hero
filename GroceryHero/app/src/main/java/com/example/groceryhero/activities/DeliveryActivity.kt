@@ -4,31 +4,40 @@ import android.content.Intent
 import android.content.Intent.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.se.omapi.Session
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
+import android.view.View
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.groceryhero.R
+import com.example.groceryhero.app.Endpoint
+import com.example.groceryhero.database.DBAddress
 import com.example.groceryhero.database.DBHelper
-import com.example.groceryhero.helper.setupToolbar
-import com.example.groceryhero.helper.show
-import com.example.groceryhero.helper.toast
-import com.example.groceryhero.model.Users
+import com.example.groceryhero.helper.*
+import com.example.groceryhero.model.*
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_delivery.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.edit_text_email
 import kotlinx.android.synthetic.main.activity_login.edit_text_password
 import kotlinx.android.synthetic.main.activity_login.input_layout_email
 import kotlinx.android.synthetic.main.activity_register.*
+import org.json.JSONObject
 
-class DeliveryActivity : AppCompatActivity() {
-    var firstName = ""
-    var lastName = ""
-    var street = ""
-    var country = ""
-    var zip = ""
-    var city = ""
-    var state = ""
-    var mobile = ""
+class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
+    lateinit var dbA:DBAddress
+    lateinit var dbC:DBHelper
+    lateinit var mSession:SessionManager
+    lateinit var mUser:Users
+    lateinit var shippingAdd:ShippingAddress
+    lateinit var summary:Summary
+    lateinit var checkOutOrder:Orders
+    var mAddress:ArrayList<AddData> = ArrayList()
+    var mProducts:ArrayList<ProductsDB> = ArrayList()
 
 
 
@@ -40,168 +49,103 @@ class DeliveryActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        button_edit_address.setOnClickListener(this)
+        button_submit.setOnClickListener(this)
 
+        //intialize data
+        dbA = DBAddress()
+        dbC = DBHelper()
+        mSession = SessionManager()
+
+        //Call in function to set data
+        //create Order request
+
+        mAddress = dbA.readData()
         this.setupToolbar("Delivery Details")
-
-        setTextListener()
-
-        button_submit.setOnClickListener {
-            if(firstName.isEmpty()){input_layout_first_name_delivery.error = "First Name required"}
-            else if (lastName.isEmpty()){input_layout_last_name_delivery.error = "Last Name Required"}
-            else if (street.isEmpty()){input_layout_street_delivery.error = "Street Address is required"}
-            else if (country.isEmpty()){input_layout_country_delivery.error = "Country is Required"}
-            else if (zip.isEmpty()){input_layout_zip_delivery.error = "ZIP Code is Required"}
-            else if (city.isEmpty()){input_layout_city_delivery.error = "City is Required"}
-            else if(state.isEmpty()){input_layout_state_delivery.error = "State is Required"}
-            else if(mobile.isEmpty()){input_layout_mobile_delivery.error = "Mobile is Required"}
-            else {
-                //Write code here if we want to save the information
-                var intent = Intent(this, ThanksActivity::class.java)
-                intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-            }
-
-        }
+        updateUI()
 
     }
 
-    fun setTextListener() {
 
-        edit_text_first_name_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_first_name_delivery.error = "First Name is Required"}
-                else {firstName = edit_text_first_name_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_first_name_delivery.error = "First Name is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_first_name_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_last_name_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_first_name_delivery.error = "Last Name is Required"}
-                else {lastName = edit_text_last_name_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_last_name_delivery.error = "Street Address is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_last_name_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_street_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_street_delivery.error = "Street Address is Required"}
-                else {street = edit_text_street_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_street_delivery.error = "Street Address is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_street_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_country_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_country_delivery.error = "Country is Required"}
-                else {country = edit_text_country_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_country_delivery.error = "Country is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_country_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_zip_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_zip_delivery.error = "ZIP Code is Required"}
-                else {zip = edit_text_zip_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_zip_delivery.error = "ZIP Code is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_zip_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_city_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_city_delivery.error = "City is Required"}
-                else {city = edit_text_city_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_city_delivery.error = "City is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_city_delivery.isErrorEnabled = false}
-            }
-        })
-
-        edit_text_state_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_state_delivery.error = "State is Required"}
-                else {state = edit_text_state_delivery.text.toString().trim()}
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_state_delivery.error = "State is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_state_delivery.isErrorEnabled = false}
-            }
-        })
-
-
-        edit_text_mobile_delivery.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_mobile_delivery.error = "Mobile # is Required"}
-                else {mobile = edit_text_mobile_delivery.text.toString().trim()}
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(s.isNullOrEmpty()) {input_layout_mobile_delivery.error = "Mobile # is Required"}
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.isNotBlank()) {input_layout_mobile_delivery.isErrorEnabled = false}
-            }
-        })
-
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {finish()}
         }
         return true
+    }
+
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.button_submit -> {
+                setData()
+                postOrder()
+                startActivity(Intent(this, ThanksActivity::class.java))
+            }
+            R.id.button_edit_address -> {
+                startActivity(Intent(this, ManageAddress::class.java))
+            }
+        }
+    }
+
+    private fun updateUI() {
+        dbA = DBAddress()
+        mAddress = dbA.readData()
+        if(dbA.isPopulated()) {
+            text_view_address.text = "${mAddress[0].houseNo} ${mAddress[0].streetName} ${mAddress[0].type} "
+        } else {
+            text_view_address.text = "Set Primary Address"
+        }
+    }
+
+    override fun onStart() {
+        updateUI()
+        super.onStart()
+    }
+
+    override fun onRestart() {
+        updateUI()
+        super.onRestart()
+    }
+
+    fun postOrder() {
+        var requestQueue = Volley.newRequestQueue(this)
+        var jsonObject = JSONObject(Gson().toJson(checkOutOrder))
+
+        var request = JsonObjectRequest(Request.Method.POST, Endpoint.postOrder(), jsonObject,
+            Response.Listener { response ->
+                this.log(response.toString())
+                this.toast(response.get("message").toString())
+
+            },
+            Response.ErrorListener {response ->
+                this.log(response.message.toString())
+            })
+        requestQueue.add(request)
+
+
+
+
+    }
+
+    fun setData() {
+        //set users
+        mUser = mSession.getUser()
+
+        //set address
+        mAddress = dbA.readData()
+
+        //set products
+        mProducts = dbC.readData()
+
+        //set passable address
+        shippingAdd = ShippingAddress(houseNo = mAddress[0].houseNo, city = mAddress[0].city,streetName = mAddress[0].streetName, pincode = mAddress[0].pincode )
+
+        //set passable summary
+        summary = Summary(discount = dbC.calculateOrder().totalDiscount, ourPrice = dbC.calculateOrder().totalPrice, deliveryCharges = 300, orderAmount = dbC.getTotalQuantity())
+
+        checkOutOrder = Orders(userId = mUser.id,user=mUser,shippingAddress = shippingAdd,products = mProducts,orderSummary = summary)
+
     }
 
 }

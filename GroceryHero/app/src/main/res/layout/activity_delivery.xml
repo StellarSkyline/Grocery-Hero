@@ -30,168 +30,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_first_name_delivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColorHint="#FFF"
-            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/button_edit_address"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/icon_address"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_first_name_delivery"
+            <TextView
+                android:id="@+id/text_view_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter First Name"
-                android:textColorHint="#FFF"
-                android:textColor="#FFF"/>
+                android:text="Primary Address"
+                android:layout_gravity="center"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp"/>
 
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_last_name_delivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColorHint="#FFF"
-                android:layout_weight="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_last_name_delivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Last Name"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_street_delivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextColor="#FFF"
-            android:textColorHint="#FFF">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_street_delivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Street Address"
-                android:textColorHint="#FFF"
-                android:textColor="#FFF"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_country_delivery"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                app:hintTextColor="#FFF"
-                android:textColorHint="#FFF"
-                android:weightSum="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_country_delivery"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Country"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_zip_delivery"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                app:hintTextColor="#FFF"
-                android:textColorHint="#FFF"
-                android:weightSum="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_zip_delivery"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:hint="ZIP Code"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_city_delivery"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                app:hintTextColor="#FFF"
-                android:textColorHint="#FFF"
-                android:weightSum="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_city_delivery"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:hint="City"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_state_delivery"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                app:hintTextColor="#FFF"
-                android:textColorHint="#FFF"
-                android:weightSum="1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_state_delivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="State"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_mobile_delivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextColor="#FFF"
-            android:textColorHint="#FFF">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_mobile_delivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Mobile"
-                android:textColorHint="#FFF"
-                android:textColor="#FFF"/>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"

@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 loadFragment(fragment)
                 return true}
             R.id.navigation_search -> {
-                //add fragment and functionality
+                startActivity(Intent(this, SearchActivity::class.java))
                 return true}
             R.id.navigation_cart -> {
                 startActivity(Intent(this, CartActivity::class.java))

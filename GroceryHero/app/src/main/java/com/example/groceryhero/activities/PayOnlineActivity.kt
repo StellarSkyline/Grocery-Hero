@@ -48,7 +48,7 @@ class PayOnlineActivity : AppCompatActivity() {
                 input_layout_zip.error = "ZIP Code Required"
             } else {
                 var intent = Intent(this, DeliveryActivity::class.java)
-                intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
+//                intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
             }
         }

@@ -160,4 +160,9 @@ class DBHelper(): SQLiteOpenHelper(MyActivity.instance, "Database",null,1) {
         return totalQuantity
     }
 
+    fun deleteData() {
+        dbWritable.delete(DBHelper.TABLE_NAME, null, null)
+    }
+
+
 }

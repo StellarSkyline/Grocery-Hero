@@ -105,6 +105,29 @@
                 android:orientation="horizontal">
 
                 <ImageButton
+                    android:id="@+id/button_order_history"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/icon_order" />
+
+                <TextView
+                    android:id="@+id/text_view_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="19dp"
+                    android:text="Order Status"
+                    android:textColor="#FFF"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
                     android:id="@+id/button_edit_address"
                     android:layout_width="70dp"
                     android:layout_height="70dp"

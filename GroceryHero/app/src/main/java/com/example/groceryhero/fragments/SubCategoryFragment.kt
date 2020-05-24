@@ -53,7 +53,7 @@ class SubCategoryFragment : Fragment() {
     }
 
     private fun init(view: View) {
-        getProducData()
+        getProductData()
         adapter = AdapterProducts(activity as Context)
         view.recycler_view.layoutManager = LinearLayoutManager(activity!!)
         view.recycler_view.adapter = adapter
@@ -71,7 +71,7 @@ class SubCategoryFragment : Fragment() {
             }
     }
 
-    fun getProducData() {
+    fun getProductData() {
         var requestQueue = Volley.newRequestQueue(activity!!)
 
         var request = StringRequest(
