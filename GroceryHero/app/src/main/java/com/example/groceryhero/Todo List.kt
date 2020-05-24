@@ -24,7 +24,7 @@ package com.example.groceryhero
 //TODO: [X] - 05/24/2020 - Implement Order History API Display
 //TODO: [ ] Add input validation to Add Address Activity
 //TODO: [ ] Figure out back button sends you back to main activity from thank you page
-//TODO: [ ] Implement Search activity using api: http://apolis-grocery.herokuapp.com/api/products/search/<Product Name>
+//TODO: [X] - 05/25/2020 - Implement Search activity using api: http://apolis-grocery.herokuapp.com/api/products/search/<Product Name>
 
 
 
