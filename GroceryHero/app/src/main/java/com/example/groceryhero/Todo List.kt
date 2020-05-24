@@ -23,7 +23,6 @@ package com.example.groceryhero
 //TODO: [X} - 05/23/2020 - Implement Order Post API
 //TODO: [X] - 05/24/2020 - Implement Order History API Display
 //TODO: [ ] Add input validation to Add Address Activity
-//TODO: [ ] Figure out back button sends you back to main activity from thank you page
 //TODO: [X] - 05/25/2020 - Implement Search activity using api: http://apolis-grocery.herokuapp.com/api/products/search/<Product Name>
 
 
@@ -32,3 +31,4 @@ package com.example.groceryhero
 //TODO: [ ] Create Activity to show case Product Image/ Image slider for different images
 //TODO: [ ] Change toast messages into snack bar
 //TODO: [ ] Figure out how to make auto slider for image view pager
+//TODO: [ ] Figure out back button sends you back to main activity from thank you page
