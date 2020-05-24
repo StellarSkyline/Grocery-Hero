@@ -58,9 +58,8 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
         mSession = SessionManager()
 
         //Call in function to set data
-        setData()
         //create Order request
-        checkOutOrder = Orders(userId = mUser.id,user=mUser,shippingAddress = shippingAdd,products = mProducts,orderSummary = summary)
+
         mAddress = dbA.readData()
         this.setupToolbar("Delivery Details")
         updateUI()
@@ -79,6 +78,7 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id) {
             R.id.button_submit -> {
+                setData()
                 postOrder()
                 startActivity(Intent(this, ThanksActivity::class.java))
             }
@@ -144,6 +144,7 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
         //set passable summary
         summary = Summary(discount = dbC.calculateOrder().totalDiscount, ourPrice = dbC.calculateOrder().totalPrice, deliveryCharges = 300, orderAmount = dbC.getTotalQuantity())
 
+        checkOutOrder = Orders(userId = mUser.id,user=mUser,shippingAddress = shippingAdd,products = mProducts,orderSummary = summary)
 
     }
 

@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:layout_margin="10dp"
             android:id="@+id/image_view_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -51,10 +52,10 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/text_view_date"
+                android:id="@+id/text_view_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="Address"
                 android:textColor="#2E3641"
                 android:textSize="20dp" />
 

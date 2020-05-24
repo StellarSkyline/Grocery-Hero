@@ -53,5 +53,10 @@ class Endpoint {
             val URL_GET_ORDER = "orders/"
             return "${Config.BASE_URL+URL_GET_ORDER}"
         }
+
+        fun getSearch():String {
+            val URL_GET_SEARCH = "products/search/"
+            return "${Config.BASE_URL+URL_GET_SEARCH}"
+        }
     }
 }
