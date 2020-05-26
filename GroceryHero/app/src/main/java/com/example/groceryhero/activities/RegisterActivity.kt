@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                 input_layout_password.error = "Password is Required"
             } else if(name.isNotEmpty() && email.isNotEmpty() && mobile.isNotEmpty() && password.isNotEmpty()) {
                 progress_bar.show()
-                var user = Users(name, email, password, mobile, " ")
+                var user = Users(name, email, password, mobile, email)
                 registerUser(user)
             }
         }
