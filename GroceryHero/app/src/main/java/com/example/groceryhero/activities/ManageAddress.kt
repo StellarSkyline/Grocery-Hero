@@ -78,6 +78,7 @@ class ManageAddress : AppCompatActivity() {
             R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
             R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
             R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
+            R.id.toolbar_order_history ->{startActivity(Intent(this, MyOrderActivity::class.java))}
         }
         return true
     }
