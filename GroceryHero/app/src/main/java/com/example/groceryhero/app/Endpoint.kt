@@ -26,12 +26,12 @@ class Endpoint {
 
         fun getRegister():String {
             val URL_REGISTER = "auth/register"
-            return "${Config.LOGIN_URL + URL_REGISTER}"
+            return "${Config.BASE_URL + URL_REGISTER}"
         }
 
         fun getLogin():String {
             val URL_LOGIN = "auth/login"
-            return "${Config.LOGIN_URL + URL_LOGIN}"
+            return "${Config.BASE_URL + URL_LOGIN}"
         }
 
         fun addAddress():String {
