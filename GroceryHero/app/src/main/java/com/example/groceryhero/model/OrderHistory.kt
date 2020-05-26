@@ -1,3 +1,5 @@
+import java.io.Serializable
+
 data class OrderHistory(
     val count: Int = 0,
     val `data`: ArrayList<getData> = ArrayList(),
@@ -13,7 +15,7 @@ data class getData(
     val shippingAddress: getShippingAddress,
     val user: getUser,
     val userId: String
-)
+):Serializable
 
 data class getOrderSummary(
     val _id: String,
@@ -21,7 +23,7 @@ data class getOrderSummary(
     val discount: Int,
     val orderAmount: Int,
     val ourPrice: Int
-)
+):Serializable
 
 data class getProduct(
     val _id: String,
@@ -29,17 +31,17 @@ data class getProduct(
     val mrp: Int,
     val price: Int,
     val quantity: Int
-)
+):Serializable
 
 data class getShippingAddress(
     val city: String,
     val houseNo: String,
     val pincode: Int,
     val streetName: String
-)
+):Serializable
 
 data class getUser(
     val _id: String,
     val email: String,
     val mobile: String
-)
+):Serializable
