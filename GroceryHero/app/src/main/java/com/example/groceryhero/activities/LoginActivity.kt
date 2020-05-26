@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        this.setupToolbar("Login")
+        this.setupToolbarNoBack("Login")
         progress_bar.hide()
         setTextListener()
 
@@ -126,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
 
         edit_text_password.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s.isNullOrEmpty()) {input_layout_password.error = "Password is Required"}
+                if(s.isNullOrEmpty()) {input_layout_password_login.error = "Password is Required"}
                 else {password = edit_text_password.text.toString().trim()}
             }
 

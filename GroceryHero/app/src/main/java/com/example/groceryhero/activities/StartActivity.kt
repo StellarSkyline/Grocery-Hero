@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.groceryhero.R
 import com.example.groceryhero.helper.setupToolbar
+import com.example.groceryhero.helper.setupToolbarNoBack
 import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : AppCompatActivity(), View.OnClickListener {
@@ -18,7 +19,7 @@ class StartActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun init() {
-        this.setupToolbar("Login or Register")
+        this.setupToolbarNoBack("Login or Register")
         button_register.setOnClickListener(this)
         button_login.setOnClickListener(this)
     }

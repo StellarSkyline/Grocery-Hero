@@ -18,10 +18,7 @@ import com.example.groceryhero.R
 import com.example.groceryhero.adapter.AdapterOrderHistory
 import com.example.groceryhero.app.Endpoint
 import com.example.groceryhero.database.DBHelper
-import com.example.groceryhero.helper.SessionManager
-import com.example.groceryhero.helper.log
-import com.example.groceryhero.helper.setupToolbar
-import com.example.groceryhero.helper.toast
+import com.example.groceryhero.helper.*
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_my_order.*
 import kotlinx.android.synthetic.main.layout_cart_badge.view.*
@@ -43,6 +40,7 @@ class MyOrderActivity : AppCompatActivity() {
 
     private fun init() {
         this.setupToolbar("OrderHistory")
+        progress_bar.show()
         adapter = AdapterOrderHistory(this)
         getOrder()
 
@@ -62,6 +60,7 @@ class MyOrderActivity : AppCompatActivity() {
                 var gson = GsonBuilder().create()
                 mList = gson.fromJson(response.toString(), OrderHistory::class.java)
                 adapter.setData(mList)
+                progress_bar.hide()
             },
             Response.ErrorListener {response ->
                 this.log(response.message.toString())
@@ -74,6 +73,9 @@ class MyOrderActivity : AppCompatActivity() {
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }

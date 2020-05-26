@@ -10,45 +10,56 @@
         android:orientation="vertical">
         <include layout="@layout/toolbar"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/icon_address"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/text_view_title"
+            <ProgressBar
+                android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manage Address"
-                android:textColor="#FFF"
-                android:textSize="30dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                android:indeterminate="true"
+                android:layout_centerInParent="true"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <Button
-                android:id="@+id/button_add_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#38BB9B"
-                android:padding="10dp"
-                android:text="Add Address"
-                android:textColor="#FFF"
-                android:textSize="20dp"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/icon_address"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/text_view_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage Address"
+                    android:textColor="#FFF"
+                    android:textSize="30dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/button_add_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#38BB9B"
+                    android:padding="10dp"
+                    android:text="Add Address"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"/>
 
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </ScrollView>

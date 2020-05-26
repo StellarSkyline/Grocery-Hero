@@ -22,6 +22,13 @@ fun AppCompatActivity.setupToolbar(title:String) {
 
 }
 
+fun AppCompatActivity.setupToolbarNoBack(title:String) {
+    var myToolbar: Toolbar = this.toolbar
+    myToolbar.title = title
+    this.setSupportActionBar(myToolbar)
+
+}
+
 fun Context.toast(message:String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
