@@ -1,6 +1,5 @@
 package com.example.groceryhero.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,69 +8,50 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.MenuItemCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.groceryhero.R
-import com.example.groceryhero.adapter.AdapterProducts
-import com.example.groceryhero.app.Endpoint
+import com.example.groceryhero.adapter.AdapterOrderDetail
+import com.example.groceryhero.adapter.AdapterOrderHistory
 import com.example.groceryhero.database.DBHelper
-import com.example.groceryhero.helper.*
-import com.example.groceryhero.model.ProductList
-import com.example.groceryhero.model.Products
-import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.fragment_sub_category.view.*
+import com.example.groceryhero.helper.log
+import com.example.groceryhero.helper.setupToolbar
+import getData
+import getProduct
+import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.layout_cart_badge.view.*
 
-class SearchActivity : AppCompatActivity(),Linker {
-    lateinit var adapter:AdapterProducts
-    var mList:ArrayList<Products> = ArrayList()
+class OrderDetailActivity : AppCompatActivity() {
+    var mList:ArrayList<getProduct> = ArrayList()
     var textViewCartCount: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(R.layout.activity_order_detail)
 
         init()
     }
 
     private fun init() {
-        this.setupToolbar("Search")
-        adapter = AdapterProducts(this)
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter = adapter
+        var item = intent.getSerializableExtra("item") as getData
+        var num = intent.getIntExtra("number", 0)
+        this.setupToolbar("Order: $num")
 
-        button_search.setOnClickListener{
-            var search = edit_text_search.text.toString()
-            getSearch(search)
+
+        for(i in 0 until item.products.size) {
+            mList.add(item.products[i])
         }
 
-    }
+        text_view_order_number.text = "Order Number: $num"
+        text_view_total_price.text = "Total Order Price: ₹${item.orderSummary.ourPrice}"
+        text_view_total_amount.text = "Total Number of Items: ${item.orderSummary.orderAmount}"
+        text_view_order_address.text = "Shipped to: ${item.shippingAddress.houseNo} ${item.shippingAddress.streetName} ${item.shippingAddress.city}"
 
-    fun getSearch(searchItem:String) {
-        progress_bar.show()
-        var requestQueue = Volley.newRequestQueue(this)
+        var adapter = AdapterOrderDetail(this, mList)
 
-        var request = StringRequest(Request.Method.GET,Endpoint.getSearch()+searchItem,
-            Response.Listener { response ->
-                this.log(response.toString())
-                var gson = GsonBuilder().create()
-                var productList: ProductList = gson.fromJson(response.toString(), ProductList::class.java)
 
-                mList = productList.data
-
-                adapter.setData(mList)
-                progress_bar.hide()
-
-            },
-            Response.ErrorListener { response ->
-                this.log(response.message.toString())
-
-            })
-        requestQueue.add(request)
+        recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_view.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -116,13 +96,5 @@ class SearchActivity : AppCompatActivity(),Linker {
         updateCartCount()
         super.onStart()
     }
-
-    override fun onResume() {
-        updateCartCount()
-        super.onResume()
-    }
-
-    override fun updateUI() {
-        updateCartCount()
-    }
 }
+
