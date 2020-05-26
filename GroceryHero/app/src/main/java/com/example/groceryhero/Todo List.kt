@@ -22,8 +22,10 @@ package com.example.groceryhero
 //TODO: [X] - 05/22/2020 - Use saved address when ordering
 //TODO: [X} - 05/23/2020 - Implement Order Post API
 //TODO: [X] - 05/24/2020 - Implement Order History API Display
-//TODO: [ ] Add input validation to Add Address Activity
+//TODO: [X] - 05/24/2020 - Add input validation to Add Address Activity
 //TODO: [X] - 05/25/2020 - Implement Search activity using api: http://apolis-grocery.herokuapp.com/api/products/search/<Product Name>
+//TODO: [X] - 05/25/2020 - Add Menu items and link them to proper acitivities
+//TODO: [X] - 05/24/2020 - Add progress bar to address/Search/manage address activitites
 
 
 

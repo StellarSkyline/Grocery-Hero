@@ -3,6 +3,8 @@ package com.example.groceryhero.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -28,6 +30,12 @@ import org.json.JSONObject
 class AddressActivity : AppCompatActivity() {
     var mySession = SessionManager()
     var textViewCartCount: TextView? = null
+    var houseNo = ""
+    var streetName = ""
+    var country =""
+    var city = ""
+    var zipcode = ""
+    var type =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,18 +48,27 @@ class AddressActivity : AppCompatActivity() {
         this.setupToolbar("Add Address")
         mySession = SessionManager()
         var user = mySession.getUser()
+        setTextListener()
 
         button_address_add.setOnClickListener {
-            var houseNo = edit_text_house_number.text.toString().trim()
-            var streetName = edit_text_street_name.text.toString().trim()
-            var country = edit_text_country_address.text.toString().trim()
-            var city = edit_text_city_address.text.toString().trim()
-            var zipcode = edit_text_zip_address.text.toString().trim()
-            var type = edit_text_type_address.text.toString().trim()
-            var mAddress = Address(houseNo = houseNo, streetName = streetName, country = country,
-                zipcode = zipcode, city = city, type = type)
-            putAddress(mAddress)
-            finish()
+
+            if(houseNo.isEmpty()) {
+                input_layout_house_number.error = "House Number Required"
+            } else if( streetName.isEmpty()) {
+                input_layout_street_name.error = "Street Name is Required"
+            } else if(country.isEmpty()) {
+                input_layout_country_address.error = "Country is Required"
+            } else if(zipcode.isEmpty()) {
+                input_layout_zip_address.error = "Zipcode is Required"
+            }  else if(city.isEmpty()) {
+                input_layout_city_address.error = "City is Required"
+            }else if(type.isEmpty()) {
+                input_layout_type_address.error = "Type is Required"
+            } else {
+                var mAddress = Address(houseNo = houseNo, streetName = streetName, country = country,
+                    zipcode = zipcode, city = city, type = type)
+                putAddress(mAddress)
+            }
         }
 
     }
@@ -88,6 +105,9 @@ class AddressActivity : AppCompatActivity() {
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }
@@ -121,6 +141,101 @@ class AddressActivity : AppCompatActivity() {
     override fun onStart() {
         updateCartCount()
         super.onStart()
+    }
+
+    fun setTextListener() {
+        edit_text_house_number.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_house_number.error = "House Number is Required"}
+                else {houseNo = edit_text_house_number.text.toString().trim()}
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_house_number.error = "House Number is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_house_number.isErrorEnabled = false}
+            }
+        })
+
+
+        edit_text_street_name.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_street_name.error = "Street Name is Required"}
+                else {streetName = edit_text_street_name.text.toString().trim()}
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_street_name.error = "Street Name is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_street_name.isErrorEnabled = false}
+            }
+        })
+
+        edit_text_country_address.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_country_address.error = "Country is Required"}
+                else {country = edit_text_country_address.text.toString().trim()}
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_country_address.error = "Country is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_country_address.isErrorEnabled = false}
+            }
+        })
+
+        edit_text_zip_address.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_zip_address.error = "Zipcode is Required"}
+                else {zipcode = edit_text_zip_address.text.toString().trim()}
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_zip_address.error = "Zipcode is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_zip_address.isErrorEnabled = false}
+            }
+        })
+
+        edit_text_city_address.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_city_address.error = "City is Required"}
+                else {city = edit_text_city_address.text.toString().trim()}
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_city_address.error = "City is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_city_address.isErrorEnabled = false}
+            }
+        })
+
+        edit_text_type_address.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if(s.isNullOrEmpty()) {input_layout_city_address.error = "Type is Required"}
+                else { type = edit_text_type_address.text.toString().trim()}
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s.isNullOrEmpty()) {input_layout_type_address.error = "Type is Required"}
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.isNotBlank()) {input_layout_type_address.isErrorEnabled = false}
+            }
+        })
+
     }
 
 }

@@ -69,6 +69,9 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }

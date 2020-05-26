@@ -54,7 +54,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_last_street_name"
+                android:id="@+id/input_layout_street_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -149,8 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Type"
-                    android:textColorHint="#FFF"
-                    android:textColor="#FFF"/>
+                    android:textColor="#FFF"
+                    android:textColorHint="#FFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

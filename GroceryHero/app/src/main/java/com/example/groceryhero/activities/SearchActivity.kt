@@ -18,9 +18,7 @@ import com.example.groceryhero.R
 import com.example.groceryhero.adapter.AdapterProducts
 import com.example.groceryhero.app.Endpoint
 import com.example.groceryhero.database.DBHelper
-import com.example.groceryhero.helper.Linker
-import com.example.groceryhero.helper.log
-import com.example.groceryhero.helper.setupToolbar
+import com.example.groceryhero.helper.*
 import com.example.groceryhero.model.ProductList
 import com.example.groceryhero.model.Products
 import com.google.gson.GsonBuilder
@@ -54,6 +52,7 @@ class SearchActivity : AppCompatActivity(),Linker {
     }
 
     fun getSearch(searchItem:String) {
+        progress_bar.show()
         var requestQueue = Volley.newRequestQueue(this)
 
         var request = StringRequest(Request.Method.GET,Endpoint.getSearch()+searchItem,
@@ -65,6 +64,7 @@ class SearchActivity : AppCompatActivity(),Linker {
                 mList = productList.data
 
                 adapter.setData(mList)
+                progress_bar.hide()
 
             },
             Response.ErrorListener { response ->
@@ -78,6 +78,9 @@ class SearchActivity : AppCompatActivity(),Linker {
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }

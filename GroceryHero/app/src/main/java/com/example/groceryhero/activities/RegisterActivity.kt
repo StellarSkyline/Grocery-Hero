@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        this.setupToolbar("Register")
+        this.setupToolbarNoBack("Register")
         progress_bar.hide()
         setTextListener()
 

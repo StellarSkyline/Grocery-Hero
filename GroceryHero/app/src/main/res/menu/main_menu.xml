@@ -6,6 +6,24 @@
         android:icon="@drawable/ic_shopping_cart_white_24dp"
         app:showAsAction="always"
         android:id="@+id/menu_cart"
-        android:title="Cart"/>
+        android:title="Cart"
+        />
+
+    <item
+        android:id="@+id/toolbar_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item
+        android:id="@+id/toolbar_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search_black_24dp"/>
+
+    <item
+        android:id="@+id/toolbar_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_black_24dp"/>
+
+
 
 </menu>

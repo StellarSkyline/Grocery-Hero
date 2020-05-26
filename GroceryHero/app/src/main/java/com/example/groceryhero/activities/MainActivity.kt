@@ -19,6 +19,7 @@ import com.example.groceryhero.fragments.HomeFragment
 import com.example.groceryhero.fragments.ProfileFragment
 import com.example.groceryhero.helper.SessionManager
 import com.example.groceryhero.helper.setupToolbar
+import com.example.groceryhero.helper.setupToolbarNoBack
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sub_category.*
@@ -26,8 +27,6 @@ import kotlinx.android.synthetic.main.layout_cart_badge.view.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    var handler = Handler()
-    var currentIndex = 0
     var textViewCartCount: TextView? = null
     var imageViewOval: ImageView? = null
 
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun init() {
-        this.setupToolbar("Grocery Hero")
+        this.setupToolbarNoBack("Grocery Hero")
         var mList:ArrayList<Int> = ArrayList()
         mList.add(R.drawable.img_slider1)
         mList.add(R.drawable.img_slider2)
@@ -59,6 +58,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }
@@ -74,8 +76,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         MenuItemCompat.setActionView(item, R.layout.layout_cart_badge)
         var view = MenuItemCompat.getActionView(item)
         textViewCartCount = view.text_view_count_badge
-        //imageViewOval = view.image_view_oval
         updateCartCount()
+
 
         view.setOnClickListener{
             startActivity(Intent(this, CartActivity::class.java))

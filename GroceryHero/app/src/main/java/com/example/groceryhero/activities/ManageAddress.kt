@@ -18,9 +18,7 @@ import com.example.groceryhero.adapter.AdapterAddress
 import com.example.groceryhero.app.Endpoint
 import com.example.groceryhero.database.DBAddress
 import com.example.groceryhero.database.DBHelper
-import com.example.groceryhero.helper.SessionManager
-import com.example.groceryhero.helper.log
-import com.example.groceryhero.helper.setupToolbar
+import com.example.groceryhero.helper.*
 import com.example.groceryhero.model.AddressData
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_manage_address.*
@@ -39,6 +37,7 @@ class ManageAddress : AppCompatActivity() {
     }
 
     private fun init() {
+        progress_bar.show()
         this.setupToolbar("Address")
         getAddressData()
         adapter = AdapterAddress(this)
@@ -62,7 +61,7 @@ class ManageAddress : AppCompatActivity() {
                 this.log(response.toString())
                 var gson = GsonBuilder().create()
                 mList = gson.fromJson(response.toString(), AddressData::class.java)
-
+                progress_bar.hide()
                 adapter.setData(mList)
             },
             Response.ErrorListener {  response ->
@@ -76,6 +75,9 @@ class ManageAddress : AppCompatActivity() {
         when(item.itemId) {
             android.R.id.home -> {finish()}
             R.id.menu_cart -> {startActivity(Intent(this,CartActivity::class.java))}
+            R.id.toolbar_home -> {startActivity(Intent(this, MainActivity::class.java))}
+            R.id.toolbar_profile -> {startActivity(Intent(this, ProfileActivity::class.java))}
+            R.id.toolbar_search -> {startActivity(Intent(this, SearchActivity::class.java))}
         }
         return true
     }
@@ -114,6 +116,7 @@ class ManageAddress : AppCompatActivity() {
 
     override fun onResume() {
         getAddressData()
+        updateCartCount()
         super.onResume()
     }
 }
