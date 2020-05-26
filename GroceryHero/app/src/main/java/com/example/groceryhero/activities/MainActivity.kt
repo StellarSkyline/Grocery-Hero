@@ -21,6 +21,8 @@ import com.example.groceryhero.helper.SessionManager
 import com.example.groceryhero.helper.setupToolbar
 import com.example.groceryhero.helper.setupToolbarNoBack
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.smarteist.autoimageslider.IndicatorAnimations
+import com.smarteist.autoimageslider.SliderAnimations
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sub_category.*
 import kotlinx.android.synthetic.main.layout_cart_badge.view.*
@@ -43,8 +45,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         mList.add(R.drawable.img_slider1)
         mList.add(R.drawable.img_slider2)
         mList.add(R.drawable.img_slider3)
+
         var adapterSlider = AdapterSlider(this, mList)
-        view_pager_slider.adapter = adapterSlider
+        slider_view.setSliderAdapter(adapterSlider)
+        slider_view.startAutoCycle()
+        slider_view.setIndicatorAnimation(IndicatorAnimations.WORM)
+        slider_view.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+
         loadFragment(HomeFragment())
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         var session = SessionManager()
