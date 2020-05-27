@@ -49,7 +49,7 @@ class AdapterCart(var mContext: Context):RecyclerView.Adapter<AdapterCart.ViewHo
             Picasso
                 .get()
                 .load(Config.IMAGE_URL + item.image)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.img_noimage)
                 .into(itemView.image_view_product)
 
             itemView.button_remove.setOnClickListener{

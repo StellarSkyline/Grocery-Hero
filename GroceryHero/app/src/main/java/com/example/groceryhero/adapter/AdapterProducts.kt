@@ -50,7 +50,7 @@ class AdapterProducts(var mContext: Context):RecyclerView.Adapter<AdapterProduct
             Picasso
                 .get()
                 .load(Config.IMAGE_URL + item.image)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.img_noimage)
                 .into(itemView.image_view_product)
 
             itemView.text_view_title_product.text = item.productName

@@ -35,7 +35,7 @@ class AdapterOrderDetail(var mContext: Context, var mList:ArrayList<getProduct> 
             Picasso
                 .get()
                 .load(Config.IMAGE_URL + item.image)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.img_noimage)
                 .into(itemView.image_view_product_order)
 
             itemView.text_view_info.text = "Number of Items: ${item.quantity} | Price: ₹${item.price}"

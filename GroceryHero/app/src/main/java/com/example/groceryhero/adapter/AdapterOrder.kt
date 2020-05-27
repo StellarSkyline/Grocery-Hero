@@ -47,7 +47,7 @@ class AdapterOrder(var mContext: Context):RecyclerView.Adapter<AdapterOrder.View
             Picasso
                 .get()
                 .load(Config.IMAGE_URL + item.image)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.img_noimage)
                 .into(itemView.image_view_product)
         }
 
