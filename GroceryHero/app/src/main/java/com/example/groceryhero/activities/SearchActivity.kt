@@ -113,11 +113,13 @@ class SearchActivity : AppCompatActivity(),Linker {
     }
 
     override fun onStart() {
+        adapter.notifyDataSetChanged()
         updateCartCount()
         super.onStart()
     }
 
     override fun onResume() {
+        adapter.notifyDataSetChanged()
         updateCartCount()
         super.onResume()
     }
