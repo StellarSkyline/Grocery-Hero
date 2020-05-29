@@ -20,8 +20,7 @@ class ThanksActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {
-                var db = DBHelper()
-                db.deleteTable()
+
                 startActivity(Intent(this, MainActivity::class.java))
 
                 finish()
@@ -34,8 +33,7 @@ class ThanksActivity : AppCompatActivity() {
 
         this.setupToolbar("Thank you")
         button_home.setOnClickListener{
-            var db = DBHelper()
-            db.deleteTable()
+
             startActivity(Intent(this, MainActivity::class.java))
 
             finish()

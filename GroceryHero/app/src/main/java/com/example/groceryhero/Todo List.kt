@@ -27,6 +27,7 @@ package com.example.groceryhero
 //TODO: [X] - 05/25/2020 - Add Menu items and link them to proper acitivities
 //TODO: [X] - 05/25/2020 - Add progress bar to address/Search/manage address activitites
 //TODO: [X] - 05/26/2020 - Add Order Details
+//TODO: [ ] Add Phone Notification
 
 
 

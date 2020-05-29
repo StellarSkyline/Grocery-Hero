@@ -1,7 +1,13 @@
 package com.example.groceryhero.activities
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
+import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.se.omapi.Session
@@ -9,6 +15,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -38,6 +46,8 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var checkOutOrder:Orders
     var mAddress:ArrayList<AddData> = ArrayList()
     var mProducts:ArrayList<ProductsDB> = ArrayList()
+    val CHANNEL_ID = "Order Details"
+    val NOTIFICATION_ID = 1
 
 
 
@@ -80,6 +90,8 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
             R.id.button_submit -> {
                 setData()
                 postOrder()
+                createActionButtonNotification()
+                dbC.deleteData()
                 startActivity(Intent(this, ThanksActivity::class.java))
             }
             R.id.button_edit_address -> {
@@ -145,6 +157,44 @@ class DeliveryActivity : AppCompatActivity(),View.OnClickListener {
         summary = Summary(discount = dbC.calculateOrder().totalDiscount, ourPrice = dbC.calculateOrder().totalPrice, deliveryCharges = 300, orderAmount = dbC.getTotalQuantity())
 
         checkOutOrder = Orders(userId = mUser.id,user=mUser,shippingAddress = shippingAdd,products = mProducts,orderSummary = summary)
+
+    }
+
+    fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            var name = "Order Details"
+            var description = "Cart and Order Details"
+            var importance = NotificationManager.IMPORTANCE_DEFAULT
+            var channel = NotificationChannel(CHANNEL_ID,name,importance)
+            channel.description = description
+
+            var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
+        }
+    }
+
+    fun createActionButtonNotification() {
+        createNotificationChannel()
+
+        var intent = Intent(this, MyOrderActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+        var pendingIntent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT)
+        var bitmap = BitmapFactory.decodeResource(resources,R.drawable.icon_logo)
+
+
+        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        builder
+            .setStyle(NotificationCompat.BigTextStyle().bigText("Price: ${dbC.calculateOrder().totalPrice} | Quantity: ${dbC.calculateOrder().totalQuantity} | Address: ${dbA.readData()[0].houseNo} ${dbA.readData()[0].streetName}"))
+            .setSmallIcon(R.drawable.ic_baseline_shopping_cart_24)
+            .setLargeIcon(bitmap)
+            .setContentTitle("Order Is On the way")
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        var manager = NotificationManagerCompat.from(this)
+        manager.notify(NOTIFICATION_ID, builder.build())
 
     }
 
