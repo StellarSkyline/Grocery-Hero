@@ -14,7 +14,7 @@ package com.example.groceryhero
 //TODO: [X] - 05/20/2020 - Update UI for Delivery Detail
 //TODO: [X] - 05/20/2020 - Link Delivery Detail after PayOnline Activity
 //TODO: [X] - 05/21/2020 - Use the same grocery API for login and Register
-//TODO: [X] - 05/21/2020 - Edit Shared preference to Accept User ID
+//TODO: [X] - 05/21/2020 - Edit Shared preference to Accept User IDs
 //TODO: [X] - 05/21/2020 - Add Activity to register an address and save it in the api
 //TODO: [X] - 05/21/2020 - Add Activity to download saved address
 //TODO: [X] - 05/21/2020 - Create a Recycler View to show downloaded address
@@ -27,9 +27,16 @@ package com.example.groceryhero
 //TODO: [X] - 05/25/2020 - Add Menu items and link them to proper acitivities
 //TODO: [X] - 05/25/2020 - Add progress bar to address/Search/manage address activitites
 //TODO: [X] - 05/26/2020 - Add Order Details
-//TODO: [ ] Add Phone Notification
+//TODO: [X] - 05/26/2020 - Add Phone Notification
 
 
 
 //Optional Tasks
 //TODO: [X] - 05/26/2020 - Figure out how to make auto slider for image view pager
+
+
+//Stuff work on
+//TODO: [ ] Splash -> Directly log in and show register link
+//TODO: [ ] Improve on Credit Card Validation
+//TODO: [ ] Improve on button and paddings
+//TODO: [ ] Search Icon should be in the menu toolbar
